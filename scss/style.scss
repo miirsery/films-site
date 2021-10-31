@@ -105,6 +105,7 @@
         width: 20px;
         height: 20px;
         border: none;
+        color: #fff;
         background-color: transparent;
         padding: 0;
         background-image: url(../images/trash.svg);
@@ -267,6 +268,10 @@
     &__favorite-btn:hover {
         visibility: visible;
         opacity: 1;
+    }
+    &__favorite-btn:disabled {
+        opacity: 0.4;
+        pointer-events: none;
     }
     &__title {
         font-weight: 600;

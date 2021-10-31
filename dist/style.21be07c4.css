@@ -148,10 +148,9 @@ li {
   width: 20px;
   height: 20px;
   border: none;
-  color: #fff;
   background-color: transparent;
   padding: 0;
-  background-image: url(../images/trash.svg);
+  background-image: url(/trash.92802c60.svg);
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -325,7 +324,7 @@ li {
   visibility: hidden;
   -webkit-transition: all 0.5s;
   transition: all 0.5s;
-  background-image: url("../images/heart-white.png");
+  background-image: url("/heart-white.73902526.png");
   border: none;
   background-color: transparent;
 }
@@ -357,4 +356,6 @@ li {
   font-size: 16px;
   line-height: 22px;
 }
-/*# sourceMappingURL=style.css.map */
+
+
+/*# sourceMappingURL=/style.21be07c4.css.map */
