@@ -1,0 +1,36 @@
+*,
+html * /* override x.xhtml.ru style */ {
+    scrollbar-width: thin;
+    scrollbar-color: #20173e #7b6bb1;
+}
+
+*::-webkit-scrollbar,
+html *::-webkit-scrollbar {
+    height: 12px;
+    width: 8px;
+}
+*::-webkit-scrollbar-track,
+html *::-webkit-scrollbar-track {
+    background: #7b6bb1;
+}
+*::-webkit-scrollbar-thumb,
+html *::-webkit-scrollbar-thumb {
+    background-color: #20173e;
+    border-radius: 3px;
+    border: 2px solid #7b6bb1;
+}
+
+body {
+    color: #fff;
+    background-color: #1d1448;
+    overflow-anchor: none;
+}
+.container {
+    max-width: 1210px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+a {
+    text-decoration: none;
+    color: #fff;
+}
