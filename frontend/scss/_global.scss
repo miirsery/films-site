@@ -1,3 +1,5 @@
+@import url(https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css);
+
 *,
 html * /* override x.xhtml.ru style */ {
     scrollbar-width: thin;
@@ -33,4 +35,7 @@ body {
 a {
     text-decoration: none;
     color: #fff;
+}
+.main {
+    min-height: 200vh;
 }

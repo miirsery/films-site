@@ -49,7 +49,7 @@
                     <div class="favorite-btn favorite">Избранное</div>
                     <div class="favorite-modal">
                         <ul class="favorite-modal__list">
-                            
+
                         </ul>
                     </div>
                 </div>
@@ -71,13 +71,25 @@
                     </li>
                 </ul>
             </div>
-            <div class="filters">
+            <form class="filters">
                 <div class="filters-main">
                     <div class="filters-main__item">
-                        <div class="filters-main__text">
-                            <div class="filters-main__title">Жанры</div>
-                            <div class="filters-main__subtitle"></div>
-                        </div>
+                        <h4 class="filters-main__title">Жанр</h4>
+                        <ul class="dropdown ">
+                            <li class="dropdown__item">
+                                Ужасы
+                            </li>
+                            <li class="dropdown__item">
+                                Комедия
+                            </li>
+                            <li class="dropdown__item">
+                                Детектив
+                            </li>
+                            <li class="dropdown__item">
+                                Триллер
+                            </li>
+                        </ul>
+
                         <div class="filters-main__img">
                             <svg width="19" height="10" viewBox="0 0 19 10" fill="none"
                                 xmlns="http://www.w3.org/2000/svg">
@@ -87,10 +99,22 @@
                         </div>
                     </div>
                     <div class="filters-main__item">
-                        <div class="filters-main__text">
-                            <div class="filters-main__title">Поджанры</div>
-                            <div class="filters-main__subtitle"></div>
-                        </div>
+                        <h4 class="filters-main__title">Страны</h4>
+                        <ul class="dropdown">
+                            <li class="dropdown__item">
+                                Япония
+                            </li>
+                            <li class="dropdown__item">
+                                США
+                            </li>
+                            <li class="dropdown__item">
+                                Китай
+                            </li>
+                            <li class="dropdown__item">
+                                Россия
+                            </li>
+                        </ul>
+
                         <div class="filters-main__img">
                             <svg width="19" height="10" viewBox="0 0 19 10" fill="none"
                                 xmlns="http://www.w3.org/2000/svg">
@@ -100,10 +124,23 @@
                         </div>
                     </div>
                     <div class="filters-main__item">
-                        <div class="filters-main__text">
-                            <div class="filters-main__title">Страны</div>
-                            <div class="filters-main__subtitle"></div>
-                        </div>
+                        <h4 class="filters-main__title">Жанр</h4>
+                        <ul class="dropdown">
+                            <li class="dropdown__item">
+                                Ужасы
+                            </li>
+                            <li class="dropdown__item">
+                                Комедия
+                            </li>
+                            <li class="dropdown__item">
+                                Детектив
+                            </li>
+                            <li class="dropdown__item">
+                                Триллер
+                            </li>
+                        </ul>
+
+
                         <div class="filters-main__img">
                             <svg width="19" height="10" viewBox="0 0 19 10" fill="none"
                                 xmlns="http://www.w3.org/2000/svg">
@@ -113,10 +150,22 @@
                         </div>
                     </div>
                     <div class="filters-main__item">
-                        <div class="filters-main__text">
-                            <div class="filters-main__title">Годы</div>
-                            <div class="filters-main__subtitle"></div>
-                        </div>
+                        <h4 class="filters-main__title">Год</h4>
+                        <ul class="dropdown">
+                            <li class="dropdown__item">
+                                2021
+                            </li>
+                            <li class="dropdown__item">
+                                2020
+                            </li>
+                            <li class="dropdown__item">
+                                2019
+                            </li>
+                            <li class="dropdown__item">
+                                2018
+                            </li>
+                        </ul>
+
                         <div class="filters-main__img">
                             <svg width="19" height="10" viewBox="0 0 19 10" fill="none"
                                 xmlns="http://www.w3.org/2000/svg">
@@ -126,10 +175,23 @@
                         </div>
                     </div>
                     <div class="filters-main__item">
-                        <div class="filters-main__text">
-                            <div class="filters-main__title">Рейтинг</div>
-                            <div class="filters-main__subtitle"></div>
-                        </div>
+                        <h4 class="filters-main__title">Рейтинг</h4>
+                        <ul class="dropdown">
+                            <li class="dropdown__item">
+                                10
+                            </li>
+                            <li class="dropdown__item">
+                                9
+                            </li>
+                            <li class="dropdown__item">
+                                8
+                            </li>
+                            <li class="dropdown__item">
+                                7
+                            </li>
+                        </ul>
+
+
                         <div class="filters-main__img">
                             <svg width="19" height="10" viewBox="0 0 19 10" fill="none"
                                 xmlns="http://www.w3.org/2000/svg">
@@ -181,7 +243,7 @@
                         Сбросить фильтры
                     </span>
                 </div>
-            </div>
+            </form>
             <div class="content">
                 <div class="content__items">
                     <a class="content__link" href="#">
@@ -190,33 +252,189 @@
                             <img class="content__favorite-img" src="./images/heart-white.png" alt="heart">
                             <img class="content__favorite-img-disable" src="./images/heart-active.png" alt="heart">
                         </button>
+                        <p class="content__description">
+                            Оставшиеся в живых члены команды Мстителей и их союзники должны разработать новый план,
+                            который поможет противостоять разрушительным действиям могущественного титана Таноса. После
+                            наиболее масштабной и трагической битвы в истории они не могут допустить ошибку.
+                        </p>
                         <p class="content__title">Avangers</p>
                     </a>
                     <a class="content__link" href="#">
-                        <img class="content__img" src="./images/1.jpg" alt="Avangers">
+                        <img class="content__img" src="./images/2.jpg" alt="suicide squad">
                         <button class="content__favorite-btn">
                             <img class="content__favorite-img" src="./images/heart-white.png" alt="">
                             <img class="content__favorite-img-disable" src="./images/heart-active.png" alt="">
                         </button>
-                        <p class="content__title">Avangers</p>
+                        <p class="content__description">
+                            Отобрав наиболее перспективных заключенных из тюрьмы, в которой содержатся не только самые
+                            опасные преступники, но и люди со сверхспособностями, и даже не люди, правительственный
+                            агент отправляет их на самоубийственное задание в одну латиноамериканскую страну, где
+                            недавно произошел военный переворот. А чтобы те наверняка не сбежали, каждому в голову
+                            вживляется взрывное устройство.
+                        </p>
+                        <p class="content__title">Suicide squad 2</p>
                     </a>
                     <a class="content__link" href="#">
-                        <img class="content__img" src="./images/1.jpg" alt="Avangers">
+                        <img class="content__img" src="./images/3.jpg" alt="Avangers">
                         <button class="content__favorite-btn">
                             <img class="content__favorite-img" src="./images/heart-white.png" alt="">
                             <img class="content__favorite-img-disable" src="./images/heart-active.png" alt="">
                         </button>
-                        <p class="content__title">Avangers</p>
+                        <p class="content__description">
+                            Атрейдесы прибывают на планету, где им никто не рад. Тимоти Шаламе в фантастическом эпосе
+                            Дени Вильнёва
+                        </p>
+                        <p class="content__title">Дюна</p>
                     </a>
-
-
+                    <a class="content__link" href="#">
+                        <img class="content__img" src="./images/4.jpg" alt="Avangers">
+                        <button class="content__favorite-btn">
+                            <img class="content__favorite-img" src="./images/heart-white.png" alt="">
+                            <img class="content__favorite-img-disable" src="./images/heart-active.png" alt="">
+                        </button>
+                        <p class="content__description">
+                            2047 год. На Землю упал чёрный метеорит, который полностью изменил судьбу человечества.
+                            Метеорит «породил» монстров, которые получили название — D2. Монстры начали бесчинствовать,
+                            усугубляя немалый ущерб, нанесённый падением метеорита. Монстры оказались практически
+                            неуязвимы, так что человечеству пришлось подчиниться. Единственным слабым местом D2 была,
+                            как оказалось, музыка, которая могла причинить им боль. Поэтому, захватив планету, D2 тотчас
+                            запретили любые звуки, так или иначе похожие на мелодию, так что музыка практически исчезла
+                            из жизни людей.
+                        </p>
+                        <p class="content__title">Такт Опус. Судьба</p>
+                    </a>
+                    <a class="content__link" href="#">
+                        <img class="content__img" src="./images/5.jpg" alt="Avangers">
+                        <button class="content__favorite-btn">
+                            <img class="content__favorite-img" src="./images/heart-white.png" alt="">
+                            <img class="content__favorite-img-disable" src="./images/heart-active.png" alt="">
+                        </button>
+                        <p class="content__description">
+                            Вайолет продолжает помогать другим людям писать письма, выражая все чувства клиентов на
+                            бумаге. Однако она всё никак не может забыть о майоре Гилберте Бугенвиллее, который однажды
+                            дал ей возможность понять, что же значит «Я люблю тебя» и шанс начать жизнь с чистого листа.
+                        </p>
+                        <p class="content__title">Вайолет Эвергарден. Фильм</p>
+                    </a>
+                    <a class="content__link" href="#">
+                        <img class="content__img" src="./images/6.jpg" alt="Avangers">
+                        <button class="content__favorite-btn">
+                            <img class="content__favorite-img" src="./images/heart-white.png" alt="">
+                            <img class="content__favorite-img-disable" src="./images/heart-active.png" alt="">
+                        </button>
+                        <p class="content__description">
+                            Перед зрителем предстаёт новая история о жизни Юты и Рикки во время их третьего года
+                            обучения в старшей школе. Школьная жизнь ребят подходит к концу, но Рикка так и не смогла
+                            вылечиться от «синдрома восьмиклассника». Близятся школьные экзамены, и нужно думать о
+                            будущем. И тут из-за работы Тока собирается переехать в Италию, прихватив с собой и младшую
+                            сестру. В результате школьные друзья из клуба предлагают Юте, который не желает расставаться
+                            со своей любимой, сбежать вместе с ней. С этого момента и начинается путешествие двух
+                            влюблённых по всей Японии.
+                        </p>
+                        <p class="content__title">Чудачества любви не помеха! Положись на меня</p>
+                    </a>
+                    <a class="content__link" href="#">
+                        <img class="content__img" src="./images/7.jpg" alt="Avangers">
+                        <button class="content__favorite-btn">
+                            <img class="content__favorite-img" src="./images/heart-white.png" alt="">
+                            <img class="content__favorite-img-disable" src="./images/heart-active.png" alt="">
+                        </button>
+                        <p class="content__description">
+                            Одним прекрасным днём ученик старшей школы находит чей-то личный дневник, подписанный как
+                            «Дневник болезни». Вскоре выясняется, что дневник этот принадлежит Сакуре Ямаути,
+                            однокласснице главного героя. Прочтя его, Харуки Сига узнаёт, что девушка страдает
+                            смертельной болезнью — её поджелудочная железа перестала работать. Чтобы поддержать её в
+                            этой нелёгкой ситуации, юноша решает подружиться с Сакурой, несмотря на их совершенно разные
+                            характеры.
+                        </p>
+                        <p class="content__title">Я хочу съесть твою поджелудочную</p>
+                    </a>
                 </div>
             </div>
         </div>
     </main>
     <footer class="footer">
+        <div class="container">
+            <div class="footer-top">
+                <div class="footer-top__info">
+                    <div class="footer-top__info-item">
+                        <h6 class="footer-top__info-title">Title</h6>
+                        <ul class="footer-top__info-list">
+                            <li class="footer-top__item">
+                                <a href="" class="footer-top__link">Item 1</a>
+                            </li>
+                            <li class="footer-top__item">
+                                <a href="" class="footer-top__link">Item 2</a>
+                            </li>
+                            <li class="footer-top__item">
+                                <a href="" class="footer-top__link">Item 3</a>
+                            </li>
+                            <li class="footer-top__item">
+                                <a href="" class="footer-top__link">Item 4</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="footer-top__info-item">
+                        <h6 class="footer-top__info-title">Title</h6>
+                        <ul class="footer-top__info-list">
+                            <li class="footer-top__item">
+                                <a href="" class="footer-top__link">Item 1</a>
+                            </li>
+                            <li class="footer-top__item">
+                                <a href="" class="footer-top__link">Item 2</a>
+                            </li>
+                            <li class="footer-top__item">
+                                <a href="" class="footer-top__link">Item 3</a>
+                            </li>
+                            <li class="footer-top__item">
+                                <a href="" class="footer-top__link">Item 4</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="footer-top__info-item">
+                        <h6 class="footer-top__info-title">Title</h6>
+                        <ul class="footer-top__info-list">
+                            <li class="footer-top__item">
+                                <a href="" class="footer-top__link">Item 1</a>
+                            </li>
+                            <li class="footer-top__item">
+                                <a href="" class="footer-top__link">Item 2</a>
+                            </li>
+                            <li class="footer-top__item">
+                                <a href="" class="footer-top__link">Item 3</a>
+                            </li>
+                            <li class="footer-top__item">
+                                <a href="" class="footer-top__link">Item 4</a>
+                            </li>
+                        </ul>
+                    </div>
 
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div class="footer-bottom__social">
+                    <div class="social github">
+                        <a href="#" target="_blank"><i class="fa fa-github"></i></a>
+                    </div>
+                    <div class="social youtube">
+                        <a href="#" target="_blank"><i class="fa fa-youtube"></i></a>
+                    </div>
+                    <div class="social instagram">
+                        <a href="#" target="_blank"><i class="fa fa-instagram"></i></a>
+                    </div>
+                    <div class="social vk">
+                        <a href="#" target="_blank"><i class="fa fa-vk"></i></a>
+                    </div>
+                </div>
+                <div class="footer-bottom__copy">
+                    <h6 class="footer-bottom__copy-title"></h6>
+                    <p class="footer-bottom__copy-text"></p>
+                </div>
+            </div>
+        </div>
     </footer>
+
+    <script src="./js/singleselect.js"></script>
     <script src="./js/get-cart.js"></script>
     <script src="./js/cart.js"></script>
     <script src="./js/main.js"></script>
