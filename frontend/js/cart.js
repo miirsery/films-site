@@ -36,8 +36,14 @@ itemsBtn.forEach(el => {
         let id = parent.dataset.id;
         let img = parent.querySelector('.content__img').getAttribute('src');
         let title = parent.querySelector('.content__title').textContent;
-        let description = parent.querySelector('.content__description').textContent;
+        let description = parent.querySelector('.content__description')
+            .textContent
+            .replace(/[\n\r]+|[\s]{2,}/g, ' ').trim()
+            .slice(0, 100)
+            + '...';
         let deleteBtn = document.querySelector('.favorite-modal__item-delete');
+
+        localStorage.setItem('films', [title, img, description])
 
         itemsBtnImg.style.display = (itemsBtnImg.style.display == 'none') ? 'block' : 'none';
         itemsBtnImgDisable.style.display = (itemsBtnImgDisable.style.display == 'block') ? 'none' : 'block';
@@ -60,8 +66,6 @@ itemsBtn.forEach(el => {
         }
     });
 });
-
-
 
 
 function removeProduct(arg, arg2) {
