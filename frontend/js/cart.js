@@ -4,19 +4,27 @@ const itemsBtnImgDisable = document.querySelectorAll('.content__favorite-img-dis
 const favoriteShowListBtn = document.querySelector('.favorite-btn');
 const favorite = document.querySelector('.favorite');
 const deleteBtn = document.querySelector('.favorite-modal__item-delete');
+// console.log(itemsBtn);
+// const warningBtn = document.querySelector('.favorite-modal__warning');
 const randomId = () => {
     return Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
 };
 
+let filmsList = []
+
 const generateCartProduct = (img, title, id, description) => {
     return `
     <li class="favorite-modal__item" data-id="${id}">
-    <div class="favorite-modal-left">
+
         <img class="favorite-modal__item-img" src="${img}" alt="">
-        <h5 class="favorite-modal__item-title"> ${title}</h5>
-    </div>
+        <div class="favorite-modal-right">
+    <h5 class="favorite-modal__item-title"> ${title}</h5>
     <p class="content__description" style="display:block">${description}</p>
-    <button class="favorite-modal__item-delete" aria-label="Удалить">Удалить</button>
+    </div>
+    <button class="favorite-modal__item-delete" aria-label="Удалить">
+        <img class="favorite-modal__img" src="./images/trash.svg" alt="delete">
+    </button>
+   
     </li>
 	`;
 };
@@ -24,6 +32,7 @@ const generateCartProduct = (img, title, id, description) => {
 const removeFilm = (filmParent) => {
     filmParent.remove();
 }
+
 
 itemsBtn.forEach(el => {
     el.closest('.content__link').setAttribute('data-id', randomId());
@@ -39,23 +48,29 @@ itemsBtn.forEach(el => {
         let description = parent.querySelector('.content__description')
             .textContent
             .replace(/[\n\r]+|[\s]{2,}/g, ' ').trim()
-            .slice(0, 100)
+            .slice(0, 120)
             + '...';
         let deleteBtn = document.querySelector('.favorite-modal__item-delete');
 
-        localStorage.setItem('films', [title, img, description])
+        filmsList.push({
+            'id': id,
+            'title': title,
+            'description': description,
+            'img': img
+        })
 
+        localStorage.setItem('films', JSON.stringify(filmsList))
         itemsBtnImg.style.display = (itemsBtnImg.style.display == 'none') ? 'block' : 'none';
         itemsBtnImgDisable.style.display = (itemsBtnImgDisable.style.display == 'block') ? 'none' : 'block';
 
         if (itemsBtnImgDisable.style.display == 'block') {
-            favoriteList.insertAdjacentHTML('afterbegin', generateCartProduct(img, title, id, description));
+            favoriteList.insertAdjacentHTML('afterbegin', generateCartProduct(
+                img,
+                title,
+                id,
+                description));
             removeProduct(itemsBtnImgDisable, itemsBtnImg);
             console.log(favoriteList.childElementCount);
-            if (favoriteList.childElementCount >= 1)
-                favoriteShowListBtn.style.pointerEvents = 'all'
-            if (favoriteList.childElementCount <= 0)
-                favoriteShowListBtn.style.pointerEvents = 'none';
         }
         else {
             itemsBtnImgDisable.style.display = 'none';
@@ -68,13 +83,19 @@ itemsBtn.forEach(el => {
 });
 
 
+
+
 function removeProduct(arg, arg2) {
     favoriteList.addEventListener('click', (e) => {
         arg.style.display = 'none';
         arg2.style.display = 'block';
         if (e.target.classList.contains('favorite-modal__item-delete')) {
-            console.log('Deleted with button')
-            removeFilm(e.target.closest('.favorite-modal__item'));
+            e.target.style.transform = 'scale(0.8)'
+            setTimeout(() => {
+                removeFilm(e.target.closest('.favorite-modal__item'));
+            }, 100);
+
         }
     })
 }
+// console.log(favoriteList);

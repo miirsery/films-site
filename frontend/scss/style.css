@@ -38,6 +38,7 @@ html *::-webkit-scrollbar-thumb {
 }
 
 body {
+  font-family: "Montserrat", sans-serif;
   color: #fff;
   background-color: #1d1448;
   overflow-anchor: none;
@@ -55,7 +56,28 @@ a {
 }
 
 .main {
-  min-height: 200vh;
+  margin-bottom: 200px;
+}
+
+@font-face {
+  font-family: "Montserrat", sans-serif;
+  src: url("../fonts/montserrat/Montserrat-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Montserrat", sans-serif;
+  src: url("../fonts/montserrat/Montserrat-Light.woff2") format("woff2");
+  font-weight: 300;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Montserrat", sans-serif;
+  src: url("../fonts/montserrat/Montserrat-Bold.woff2") format("woff2");
+  font-weight: 600;
+  font-display: swap;
 }
 
 .header {
@@ -71,6 +93,9 @@ a {
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
 .nav__logo {
@@ -110,22 +135,44 @@ a {
   margin-right: 20px;
   font-size: 18px;
   padding: 24px 0;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.nav__search > svg {
+  width: 20px;
+  height: 20px;
+}
+
+.nav__input {
+  border: none;
+  background-color: transparent;
+  font-size: 18px;
+  color: #fff;
+  line-height: 27px;
+  padding: 0 10px;
 }
 
 .nav__profile {
   display: block;
   font-size: 18px;
   padding: 24px 0;
+  max-width: 48px;
+  cursor: pointer;
+}
+
+.nav__profile-img {
+  width: 100%;
+  pointer-events: none;
 }
 
 .favorite-block {
   position: relative;
   padding: 25px 0;
-}
-
-.favorite-btn {
-  pointer-events: none;
-  cursor: default;
 }
 
 .favorite-btn:hover + .favorite-modal {
@@ -135,9 +182,9 @@ a {
 
 .favorite-modal {
   position: absolute;
-  top: 50px;
+  top: 65px;
   right: 0;
-  width: 400px;
+  width: 450px;
   max-height: 400px;
   padding: 20px;
   z-index: 20;
@@ -160,12 +207,16 @@ a {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  margin: 20px 0;
+  margin: 0 0 20px 0;
   padding: 10px;
   -webkit-box-shadow: 0px 2px 12px 1px #3d306b;
           box-shadow: 0px 2px 12px 1px #3d306b;
   background-color: #5e4d9c94;
   position: relative;
+}
+
+.favorite-modal__warning {
+  display: block;
 }
 
 .favorite-modal__left {
@@ -187,23 +238,44 @@ a {
 
 .favorite-modal__item-title {
   font-size: 16px;
+  margin: 10px 10px;
 }
 
 .favorite-modal__item-delete {
   display: block;
   position: absolute;
   cursor: pointer;
-  width: 20px;
-  height: 20px;
+  width: 24px;
+  height: 24px;
   border: none;
-  font-size: 16px;
+  font-size: 24px;
   text-align: center;
   margin-left: 24px;
   color: #fff;
   background-color: transparent;
-  margin-top: 100px;
-  bottom: 11px;
-  right: 54px;
+  bottom: 10px;
+  right: 10px;
+  -webkit-transition: all 0.3;
+  transition: all 0.3;
+}
+
+.favorite-modal__img {
+  width: 100%;
+  position: relative;
+  z-index: 30;
+  pointer-events: none;
+}
+
+.favorite-modal__item-goto {
+  text-align: center;
+  display: block;
+  background-color: #5e4d9c94;
+  border-radius: 20px;
+  font-size: 18px;
+  padding: 15px 10px;
+  margin-bottom: 10px;
+  max-width: 50%;
+  margin: 10px auto;
 }
 
 .favorite-modal-left {
@@ -218,7 +290,6 @@ a {
 .favorite-btn {
   border: none;
   background: transparent;
-  pointer-events: none;
   color: #fff;
   font-size: 14px;
   cursor: pointer;
@@ -251,6 +322,10 @@ a {
   font-size: 14px;
   line-height: 16px;
   color: #7b6bb1;
+}
+
+.breadcrumbs__link:hover {
+  color: #ae9fdf;
 }
 
 .filters {
@@ -293,10 +368,12 @@ a {
 
 .filters-main__img {
   display: block;
+  pointer-events: none;
 }
 
 .filters-main__title {
   font-weight: 600;
+  pointer-events: none;
 }
 
 .dropdown {
@@ -324,10 +401,21 @@ a {
 }
 
 .filters-add__item {
+  background-color: transparent;
+  cursor: pointer;
+  color: #fff;
   border: 1px solid #ffffff;
   border-radius: 25px;
   padding: 8px;
   margin-right: 24px;
+}
+
+.filters-add__item:hover {
+  background-color: #3d306b;
+}
+
+.filters-add__item:active {
+  background-color: #9ea9e4;
 }
 
 .remove-filters {
@@ -445,7 +533,7 @@ a {
 
 .content__description {
   display: none;
-  padding: 0 5px;
+  margin: 10px 10px;
 }
 
 .footer {
@@ -486,43 +574,25 @@ a {
 }
 
 .footer-bottom__social {
-  max-width: 600px;
+  max-width: 150px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
-.social a {
+.social__item {
   display: block;
-  height: 24px;
-  width: 24px;
-  margin: 0 10px;
-  background: #fff;
-  border: 1px solid #ccc;
-  -webkit-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15), inset 0 0 50px rgba(0, 0, 0, 0.1);
-          box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15), inset 0 0 50px rgba(0, 0, 0, 0.1);
-  border-radius: 12px;
-  padding: 3px;
-  color: #000;
+  width: 32px;
+  height: 32px;
 }
 
-.github a:hover {
-  background: #191919;
-  color: #fff;
-}
-
-.youtube a:hover {
-  background: #c4302b;
-  color: #fff;
-}
-
-.instagram a:hover {
-  background: #3f729b;
-  color: #fff;
-}
-
-.vk a:hover {
-  background: #5d84ae;
-  color: #fff;
+.social__item > img {
+  width: 100%;
 }
 /*# sourceMappingURL=style.css.map */

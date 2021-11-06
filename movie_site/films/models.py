@@ -7,7 +7,10 @@ class Film(models.Model):
     )
     description = models.TextField()
     image = models.ImageField(
-        upload_to='preview-films/'
+        upload_to='preview-films/',
+        null=True,
+        blank=True,
+        default='preview-films/4.jpg'
     )
 
     def __str__(self):

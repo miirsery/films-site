@@ -23,6 +23,7 @@ html *::-webkit-scrollbar-thumb {
 }
 
 body {
+    font-family: "Montserrat", sans-serif;
     color: #fff;
     background-color: #1d1448;
     overflow-anchor: none;
@@ -37,5 +38,5 @@ a {
     color: #fff;
 }
 .main {
-    min-height: 200vh;
+    margin-bottom: 200px;
 }

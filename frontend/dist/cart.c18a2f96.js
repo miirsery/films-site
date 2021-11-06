@@ -123,14 +123,17 @@ var favoriteList = document.querySelector('.favorite-modal__list');
 var itemsBtnImgDisable = document.querySelectorAll('.content__favorite-img-disable');
 var favoriteShowListBtn = document.querySelector('.favorite-btn');
 var favorite = document.querySelector('.favorite');
-var deleteBtn = document.querySelector('.favorite-modal__item-delete');
+var deleteBtn = document.querySelector('.favorite-modal__item-delete'); // console.log(itemsBtn);
+// const warningBtn = document.querySelector('.favorite-modal__warning');
 
 var randomId = function randomId() {
   return Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
 };
 
-var generateCartProduct = function generateCartProduct(img, title, id) {
-  return "\n    <li class=\"favorite-modal__item\" data-id=\"".concat(id, ">\n    <div class=\"favorite-modal-left\">\n        <img class=\"favorite-modal__item-img\" src=\"").concat(img, "\" alt=\"\"\">\n        <h5 class=\"favorite-modal__item-title\"> ").concat(title, "</h5>\n    </div>\n    <button class=\"favorite-modal__item-delete\" aria-label=\"\u0423\u0434\u0430\u043B\u0438\u0442\u044C\">\u0423\u0434\u0430\u043B\u0438\u0442\u044C</button>\n</li>\n\t");
+var filmsList = [];
+
+var generateCartProduct = function generateCartProduct(img, title, id, description) {
+  return "\n    <li class=\"favorite-modal__item\" data-id=\"".concat(id, "\">\n\n        <img class=\"favorite-modal__item-img\" src=\"").concat(img, "\" alt=\"\">\n        <div class=\"favorite-modal-right\">\n    <h5 class=\"favorite-modal__item-title\"> ").concat(title, "</h5>\n    <p class=\"content__description\" style=\"display:block\">").concat(description, "</p>\n    </div>\n    <button class=\"favorite-modal__item-delete\" aria-label=\"\u0423\u0434\u0430\u043B\u0438\u0442\u044C\">\n        <img class=\"favorite-modal__img\" src=\"./images/trash.svg\" alt=\"delete\">\n    </button>\n   \n    </li>\n\t");
 };
 
 var removeFilm = function removeFilm(filmParent) {
@@ -145,29 +148,49 @@ itemsBtn.forEach(function (el) {
     var itemsBtnImgDisable = el.querySelector('.content__favorite-img-disable');
     var self = e.currentTarget;
     var parent = self.closest('.content__link');
-    var child = self.closest('.favorite-modal__item');
     var id = parent.dataset.id;
     var img = parent.querySelector('.content__img').getAttribute('src');
     var title = parent.querySelector('.content__title').textContent;
+    var description = parent.querySelector('.content__description').textContent.replace(/[\n\r]+|[\s]{2,}/g, ' ').trim().slice(0, 120) + '...';
+    var deleteBtn = document.querySelector('.favorite-modal__item-delete');
+    filmsList.push({
+      'id': id,
+      'title': title,
+      'description': description,
+      'img': img
+    });
+    localStorage.setItem('films', JSON.stringify(filmsList));
     itemsBtnImg.style.display = itemsBtnImg.style.display == 'none' ? 'block' : 'none';
     itemsBtnImgDisable.style.display = itemsBtnImgDisable.style.display == 'block' ? 'none' : 'block';
 
     if (itemsBtnImgDisable.style.display == 'block') {
-      console.log('actove');
-      favoriteList.insertAdjacentHTML('afterbegin', generateCartProduct(img, title, id));
-      if (favoriteList.childElementCount >= 1) favoriteShowListBtn.style.pointerEvents = 'all';
+      favoriteList.insertAdjacentHTML('afterbegin', generateCartProduct(img, title, id, description));
+      removeProduct(itemsBtnImgDisable, itemsBtnImg);
+      console.log(favoriteList.childElementCount);
     } else {
-      console.log('Imagine that it`s deleted');
+      itemsBtnImgDisable.style.display = 'none';
+
+      if (deleteBtn.classList.contains('favorite-modal__item-delete')) {
+        removeFilm(deleteBtn.closest('.favorite-modal__item'));
+        console.log(favoriteList.childElementCount);
+      }
     }
   });
 });
-favoriteList.addEventListener('click', function (e) {
-  if (e.target.classList.contains('favorite-modal__item-delete')) {
-    console.log(e.target);
-    removeFilm(e.target.closest('.favorite-modal__item'));
-    if (favoriteList.childElementCount == 0) favoriteShowListBtn.style.pointerEvents = 'none';
-  }
-});
+
+function removeProduct(arg, arg2) {
+  favoriteList.addEventListener('click', function (e) {
+    arg.style.display = 'none';
+    arg2.style.display = 'block';
+
+    if (e.target.classList.contains('favorite-modal__item-delete')) {
+      e.target.style.transform = 'scale(0.8)';
+      setTimeout(function () {
+        removeFilm(e.target.closest('.favorite-modal__item'));
+      }, 100);
+    }
+  });
+} // console.log(favoriteList);
 },{}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
@@ -196,7 +219,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "65262" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "63382" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

@@ -2220,9 +2220,77 @@ var _axios = _interopRequireDefault(require("axios"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+var filmsList = document.querySelector('.content__items');
+var favoriteList = document.querySelector('.favorite-modal__list'); // let filmsListArray = []
+
+var getFilms = function getFilms(img, title, id, description) {
+  return "\n        <a class=\"content__link\" href=\"#\" data-id=\"".concat(id, "\">\n        <img class=\"content__img\" src=\"").concat(img, "\" alt=\"").concat(title, "\">\n        <button class=\"content__favorite-btn\">\n            <img class=\"content__favorite-img\" src=\"http://127.0.0.1:8000/media/assets/heart-white.png\" alt=\"heart\">\n            <img class=\"content__favorite-img-disable\" src=\"http://127.0.0.1:8000/media/assets/heart-active.png\" alt=\"heart\">\n        </button>\n        <p class=\"content__description\">\n            \u041E\u0441\u0442\u0430\u0432\u0448\u0438\u0435\u0441\u044F \u0432 \u0436\u0438\u0432\u044B\u0445 \u0447\u043B\u0435\u043D\u044B \u043A\u043E\u043C\u0430\u043D\u0434\u044B \u041C\u0441\u0442\u0438\u0442\u0435\u043B\u0435\u0439 \u0438 \u0438\u0445 \u0441\u043E\u044E\u0437\u043D\u0438\u043A\u0438 \u0434\u043E\u043B\u0436\u043D\u044B \u0440\u0430\u0437\u0440\u0430\u0431\u043E\u0442\u0430\u0442\u044C \u043D\u043E\u0432\u044B\u0439 \u043F\u043B\u0430\u043D,\n            \u043A\u043E\u0442\u043E\u0440\u044B\u0439 \u043F\u043E\u043C\u043E\u0436\u0435\u0442 \u043F\u0440\u043E\u0442\u0438\u0432\u043E\u0441\u0442\u043E\u044F\u0442\u044C \u0440\u0430\u0437\u0440\u0443\u0448\u0438\u0442\u0435\u043B\u044C\u043D\u044B\u043C \u0434\u0435\u0439\u0441\u0442\u0432\u0438\u044F\u043C \u043C\u043E\u0433\u0443\u0449\u0435\u0441\u0442\u0432\u0435\u043D\u043D\u043E\u0433\u043E \u0442\u0438\u0442\u0430\u043D\u0430 \u0422\u0430\u043D\u043E\u0441\u0430. \u041F\u043E\u0441\u043B\u0435\n            \u043D\u0430\u0438\u0431\u043E\u043B\u0435\u0435 \u043C\u0430\u0441\u0448\u0442\u0430\u0431\u043D\u043E\u0439 \u0438 \u0442\u0440\u0430\u0433\u0438\u0447\u0435\u0441\u043A\u043E\u0439 \u0431\u0438\u0442\u0432\u044B \u0432 \u0438\u0441\u0442\u043E\u0440\u0438\u0438 \u043E\u043D\u0438 \u043D\u0435 \u043C\u043E\u0433\u0443\u0442 \u0434\u043E\u043F\u0443\u0441\u0442\u0438\u0442\u044C \u043E\u0448\u0438\u0431\u043A\u0443.\n        </p>\n        <p class=\"content__title\">").concat(title, "</p>\n    </a>\n\t");
+};
+
+var generateFilmsToFavorite = function generateFilmsToFavorite(img, title, description) {
+  return "\n    <li class=\"favorite-modal__item\" data-id=\"\">\n\n        <img class=\"favorite-modal__item-img\" src=\"".concat(img, "\" alt=\"\">\n        <div class=\"favorite-modal-right\">\n    <h5 class=\"favorite-modal__item-title\"> ").concat(title, "</h5>\n    <p class=\"content__description\" style=\"display:block\">").concat(description, "</p>\n    </div>\n    <button class=\"favorite-modal__item-delete\" aria-label=\"\u0423\u0434\u0430\u043B\u0438\u0442\u044C\">\n        <img class=\"favorite-modal__img\" src=\"http://127.0.0.1:8000/media/assets/trash.svg\" alt=\"delete\">\n    </button>\n   \n    </li>\n\t");
+};
+
+var removeFilm = function removeFilm(filmParent) {
+  filmParent.remove();
+};
+
+function renderFilms() {
+  var itemsBtn = document.querySelectorAll('.content__favorite-btn');
+  itemsBtn.forEach(function (el) {
+    el.addEventListener('click', function (e) {
+      console.log(filmsList);
+      e.preventDefault();
+      var itemsBtnImg = el.querySelector('.content__favorite-img');
+      var itemsBtnImgDisable = el.querySelector('.content__favorite-img-disable');
+      itemsBtnImg.style.display = itemsBtnImg.style.display == 'none' ? 'block' : 'none';
+      itemsBtnImgDisable.style.display = itemsBtnImgDisable.style.display == 'block' ? 'none' : 'block';
+      var self = e.currentTarget;
+      var parent = self.closest('.content__link');
+      var img = parent.querySelector('.content__img').getAttribute('src');
+      var title = parent.querySelector('.content__title').textContent;
+      var description = parent.querySelector('.content__description').textContent.replace(/[\n\r]+|[\s]{2,}/g, ' ').trim().slice(0, 120) + '...';
+      var deleteBtn = document.querySelector('.favorite-modal__item-delete'); // filmsListArray.push({
+      //     'title': title,
+      //     'description': description,
+      //     'img': img
+      // })
+      // localStorage.setItem('films', JSON.stringify(filmsList))
+
+      if (itemsBtnImgDisable.style.display == 'block') {
+        favoriteList.insertAdjacentHTML('afterbegin', generateFilmsToFavorite(img, title, description));
+        removeProduct(itemsBtnImgDisable, itemsBtnImg);
+      } else {
+        itemsBtnImgDisable.style.display = 'none';
+
+        if (deleteBtn.classList.contains('favorite-modal__item-delete')) {
+          removeFilm(deleteBtn.closest('.favorite-modal__item'));
+        }
+      }
+    });
+  });
+}
+
 function getCarts() {
   var carts = _axios.default.get("http://127.0.0.1:8000/api/films/").then(function (resp) {
-    console.log(resp.data);
+    resp.data.forEach(function (film) {
+      filmsList.insertAdjacentHTML('afterbegin', getFilms(film.image, film.title, film.id, film.description));
+    });
+    renderFilms();
+  });
+}
+
+function removeProduct(film1, film2) {
+  favoriteList.addEventListener('click', function (e) {
+    film1.style.display = 'none';
+    film2.style.display = 'block';
+
+    if (e.target.classList.contains('favorite-modal__item-delete')) {
+      e.target.style.transform = 'scale(0.8)';
+      setTimeout(function () {
+        removeFilm(e.target.closest('.favorite-modal__item'));
+      }, 100);
+    }
   });
 }
 
@@ -2255,7 +2323,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "65262" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "63382" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
