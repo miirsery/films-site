@@ -1,0 +1,19 @@
+@import "style";
+@import "reset";
+@import "vars";
+@import "global";
+@import "fonts";
+.favorite-container {
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 0 15px;
+}
+.favorite-modal {
+    &__item {
+    }
+    &__item-img {
+        width: 250px;
+    }
+}
+
+@import "media";

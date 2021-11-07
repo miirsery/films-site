@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./scss/style-favorites.css">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1 class="availability-warning">Здесь ничего нет, пожалуйста, добавьте фильмы</h1>
+    <div class="favorite-container">
+        <header class="header">
+            <nav class="header__nav nav">
+                <a class="nav__logo" href="#">Главная</a>
+                <ul class="nav__list">
+                    <li class="nav__item">
+                        <a class="nav__link" href="#">Фильмы</a>
+                    </li>
+                    <li class="nav__item">
+                        <a class="nav__link" href="#">Сериалы</a>
+                    </li>
+                    <li class="nav__item">
+                        <a class="nav__link" href="#">Мультфильмы</a>
+                    </li>
+                    <li class="nav__item">
+                        <a class="nav__link" href="#">Подборки</a>
+                    </li>
+                    <li class="nav__item">
+                        <a class="nav__link" href="#">Спорт</a>
+                    </li>
+                </ul>
+
+                <div class="nav__right">
+
+                    <span class="nav__search">
+                        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M10.0264 5.19995C10.0264 7.78999 7.89956 9.89991 5.2632 9.89991C2.62684 9.89991 0.5 7.78999 0.5 5.19995C0.5 2.60992 2.62684 0.5 5.2632 0.5C7.89956 0.5 10.0264 2.60992 10.0264 5.19995Z"
+                                stroke="white" />
+                            <path d="M8.38175 8.36968L13 13" stroke="white" />
+                        </svg>
+                        <input class="nav__input" type="text" placeholder="Поиск">
+                    </span>
+                </div>
+                <a class="nav__profile" href="/">
+                    <img class="nav__profile-img" src="./images/avatar.png" alt="avatar">
+                </a>
+                <div class="favorite-block">
+                    <a class="favorite-btn favorite" href="favorite-films.html">
+                        <img class="favorite-btn__icon" src="./images/heart-header.svg" alt="favorite">
+                    </a>
+                    <div class="favorite-modal">
+                        <ul class="favorite-modal__list">
+
+                        </ul>
+                        <a class="favorite-modal__item-goto" href='./favorite-films.html'>Перейти в избранное</a>
+                    </div>
+                </div>
+            </nav>
+        </header>
+        <div class="films-content">
+
+        </div>
+    </div>
+
+    <script src="js/favorite-films.js"></script>
+</body>
+
+</html>
