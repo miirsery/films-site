@@ -1,0 +1,11 @@
+.container {
+    &__item {
+        background-color: #000;
+        &:hover {
+            background-color: #2e2e2e;
+        }
+    }
+}
+body {
+    background-color: #232323;
+}
