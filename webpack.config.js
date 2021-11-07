@@ -2,26 +2,33 @@ const path = require('path')
 const HTMLPlugin = require('html-webpack-plugin')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+const CopyWebpackPlugin = require('copy-webpack-plugin');
+const OptimizeCssAssetWebpackPlugin = require('optimize-css-assets-webpack-plugin')
+const TerserWebpackPlugin = require('terser-webpack-plugin')
+const ImageminPlugin = require('imagemin-webpack')
 
 const isDev = process.env.NODE_ENV === 'development';
 const isProd = !isDev;
 
 const filename = (ext) => isDev ? `[name].${ext}` : `[name].[contenthash].${ext}`;
 
-module.exports = {
-    context: path.resolve(__dirname, 'src'),
-    mode: 'development',
-    entry: './app.js',
-    output: {
-        // filename: 'bundle.[chunkhash].js',
-        filename: `./scripts/${filename('js')}`,
-        path: path.resolve(__dirname, 'dist')
-    },
-    devServer: {
-        hot: true,
-        port: 3000
-    },
-    plugins: [
+const optimization = () => {
+    const configObg = {
+        splitChunks: {
+            chunks: 'all'
+        }
+    };
+    if (isProd) {
+        configObg.minimizer = [
+            new OptimizeCssAssetWebpackPlugin(),
+            new TerserWebpackPlugin()
+        ];
+    }
+    return configObg;
+}
+
+const plugins = () => {
+    const basePlugins = [
         new HTMLPlugin({
             template: path.resolve(__dirname, 'src/index.html'),
             filename: 'index.html',
@@ -32,12 +39,65 @@ module.exports = {
         new CleanWebpackPlugin(),
         new MiniCssExtractPlugin({
             filename: `./css/${filename('css')}`,
+        }),
+        // copy into root all from 'assets'
+        new CopyWebpackPlugin({
+            patterns: [
+                {
+                    from: path.resolve(__dirname, 'src/assets'), to: path.resolve(__dirname, 'dist')
+                }
+            ]
         })
-        // new MiniCssExtractPlugin({
-        //     filename: isDevelopment ? '[name].css' : '[name].[hash].css',
-        //     chunkFilename: isDevelopment ? '[id].css' : '[id].[hash].css'
-        // })
-    ],
+    ];
+
+    if (isProd) {
+        basePlugins.push(
+            new ImageminPlugin({
+                minimizerOptions: {
+                    plugins: [
+                        ["gifsicle", { interlaced: true }],
+                        ["jpegtran", { progressive: true }],
+                        ["optipng", { optimizationLevel: 5 }],
+                        [
+                            "svgo",
+                            {
+                                plugins: [
+                                    {
+                                        removeViewBox: false
+                                    }
+                                ]
+                            },
+                        ],
+                    ],
+                },
+            }),
+        )
+    }
+
+    return basePlugins;
+};
+
+module.exports = {
+    context: path.resolve(__dirname, 'src'),
+    mode: 'development',
+    entry: './app.js',
+    output: {
+        // filename: 'bundle.[chunkhash].js',
+        filename: `./scripts/${filename('js')}`,
+        path: path.resolve(__dirname, 'dist'),
+        publicPath: ''
+    },
+    devServer: {
+        historyApiFallback: true,
+        contentBase: path.resolve(__dirname, 'dist'),
+        open: true,
+        compress: true,
+        hot: true,
+        port: 3000,
+    },
+    optimization: optimization(),
+    plugins: plugins(),
+    devtool: isProd ? false : 'source-map',
     module: {
         rules: [
             {
@@ -57,8 +117,46 @@ module.exports = {
                 ],
             },
             {
-                test: /\.s[ac]ss$/i,
-                use: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader']
+                test: /\.s[ac]ss$/,
+                use: [
+                    {
+                        loader: MiniCssExtractPlugin.loader,
+                        options: {
+                            publicPath: (resourcePath, context) => {
+                                return path.relative(path.dirname(resourcePath), context) + '/';
+                            },
+                        }
+                    },
+                    'css-loader',
+                    'sass-loader'
+                ],
+            },
+            {
+                test: /\.js$/,
+                exclude: /node_modules/,
+                use: ['babel-loader'],
+            },
+            {
+                test: /\.(?:|gif|png|jpg|jpeg|svg)$/,
+                use: [
+                    {
+                        loader: 'file-loader',
+                        options: {
+                            name: `./images/${filename('[ext]')}`,
+                        }
+                    }
+                ],
+            },
+            {
+                test: /\.(?:|woff2)$/,
+                use: [
+                    {
+                        loader: 'file-loader',
+                        options: {
+                            name: `./fonts/${filename('[ext]')}`,
+                        }
+                    }
+                ],
             }
         ],
     },
