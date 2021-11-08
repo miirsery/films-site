@@ -85,15 +85,18 @@ module.exports = {
         // filename: 'bundle.[chunkhash].js',
         filename: `./scripts/${filename('js')}`,
         path: path.resolve(__dirname, 'dist'),
-        publicPath: ''
     },
     devServer: {
+        static: {
+            directory: path.join(__dirname, 'dist'),
+        },
+        compress: true,
         historyApiFallback: true,
-        contentBase: path.resolve(__dirname, 'dist'),
         open: true,
         compress: true,
         hot: true,
         port: 3000,
+
     },
     optimization: optimization(),
     plugins: plugins(),
